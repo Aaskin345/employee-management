@@ -46,10 +46,8 @@ namespace EmployeeManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Employee employee)
+        public ActionResult Create([Bind(Include = "Id,EmpNo,FirstName,MiddleName,LastName,EmailAddress,PhoneNumber,Country,DateOfBirth,Address,Department,Designation,CreatedById,CreatedOn,ModifieById,ModifiedOn")] Employee employee)
         {
-            employee.CreatedById = "Kevin Kirui";
-            employee.CreatedOn = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Employees.Add(employee);
