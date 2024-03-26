@@ -4,14 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm" })
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-lg" })
 </p>
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Country List</h3>
+        <h3 class="text-center">Country List</h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -36,6 +34,15 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.ModifiedOn)
+                        </th>
+                        <th>
+                            Edit
+                        </th>
+                        <th>
+                            View
+                        </th>
+                        <th>
+                            Delete
                         </th>
                         <th></th>
                     </tr>
@@ -62,9 +69,13 @@
                         @Html.DisplayFor(modelItem => item.ModifiedOn)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id },new{@class = "btn btn-primary"}) |
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id },new { @class ="btn btn-warning"}) 
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id } ,new { @class ="btn btn-danger"})
                     </td>
                 </tr>
             }
