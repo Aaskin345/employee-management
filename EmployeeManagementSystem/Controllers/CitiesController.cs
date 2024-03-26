@@ -15,8 +15,8 @@ namespace EmployeeManagementSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Cities
-        public ActionResult Index()
-        {
+       public ActionResult Index()
+       {
             return View(db.Cities.ToList());
         }
 

@@ -176,6 +176,7 @@
     <Compile Include="Controllers\DesignationsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaveApplicationsController.cs" />
     <Compile Include="Controllers\LeaveTypesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SystemCodeDetailsController.cs" />
@@ -195,6 +196,10 @@
     <Compile Include="Migrations\202403070655388_Countries.Designer.cs">
       <DependentUpon>202403070655388_Countries.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403250751230_Another.cs" />
+    <Compile Include="Migrations\202403250751230_Another.Designer.cs">
+      <DependentUpon>202403250751230_Another.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bank.cs" />
@@ -204,6 +209,7 @@
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LeaveApplication.cs" />
     <Compile Include="Models\LeaveType.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SystemCode.cs" />
@@ -312,6 +318,11 @@
     <Content Include="Views\Countries\Details.cshtml" />
     <Content Include="Views\Countries\Edit.cshtml" />
     <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Views\LeaveApplications\Create.cshtml" />
+    <Content Include="Views\LeaveApplications\Delete.cshtml" />
+    <Content Include="Views\LeaveApplications\Details.cshtml" />
+    <Content Include="Views\LeaveApplications\Edit.cshtml" />
+    <Content Include="Views\LeaveApplications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminLTE\build\" />
@@ -337,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403070655388_Countries.resx">
       <DependentUpon>202403070655388_Countries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403250751230_Another.resx">
+      <DependentUpon>202403250751230_Another.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
