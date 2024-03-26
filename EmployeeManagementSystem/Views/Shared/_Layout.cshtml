@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="@Url.Content("~/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css")">
     <link rel="stylesheet" href="@Url.Content("~/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css")">
     <link rel="stylesheet" href="@Url.Content("~/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css")">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -204,7 +206,7 @@
                              with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="material-icons">home</i>
                                 <p>
                                     Dashboard
                                     
@@ -212,7 +214,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Employees", "Index", "Employees", null, new { @class = "nav-link" })                 
+                                  <a class="nav-link active" href="@Url.Action("Index", "Employees")">
+                                      <i class="material-icons">badge</i>
+                                    <p>
+                                      Employees
+                                       
+                                    </p>
+                                </a>
                         </li>
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
@@ -225,25 +233,25 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("Index", "LeaveTypes")">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="material-icons">pending</i>
                                         <p>Pending Applications</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                         <a class="nav-link" href="@Url.Action("Index", "LeaveTypes")">
-                                        <i class="far fa-circle nav-icon"></i>
+                                           <i class="material-icons">checklist</i>
                                     <p>LeaveTypes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("Index", "LeaveTypes")">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="material-icons">verified</i>
                                         <p>Approved Applications</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("Index", "LeaveApplications")">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="material-icons">add_circle</i>
                                         <p>New Applications</p>
                                     </a>
                                 </li>
@@ -260,43 +268,43 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                    <a class="nav-link" href="@Url.Action("Index", "Countries")">
-                                    <i class="far fa-circle nav-icon"></i>
+                                       <i class="material-icons">public</i>
                                     <p>Countries</p>
                                     </a>                                  
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("Index", "Cities")">
-                                        <i class="far fa-circle nav-icon"></i>
+                                     <i class="material-icons">location_city</i>
                                         <p>Cities</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("Index", "SystemCodes")">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="material-icons">code</i>
                                         <p>SystemCodes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("Index", "SystemCodeDetails")">
-                                    <i class="far fa-circle nav-icon"></i>
+                                        <i class="material-icons">details</i>
                                     <p>SystemCodesDetails</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                    <a class="nav-link" href="@Url.Action("Index", "Banks")">
-                                    <i class="far fa-circle nav-icon"></i>
+                                       <i class="material-icons">account_balance</i>
                                     <p>Banks</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("Index", "Designations")">
-                                    <i class="far fa-circle nav-icon"></i>
+                                        <i class="material-icons">work</i>
                                     <p>Designations</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("Index", "Departments")">
-                                    <i class="far fa-circle nav-icon"></i>
+                                        <i class="material-icons">domain</i>
                                     <p>Departments</p>
                                     </a>
                                 </li>
