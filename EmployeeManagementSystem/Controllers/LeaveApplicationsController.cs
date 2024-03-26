@@ -39,10 +39,10 @@ namespace EmployeeManagementSystem.Controllers
         // GET: LeaveApplications/Create
         public ActionResult Create()
         {
-            ViewBag.DurationId = new SelectList(db.SystemCodeDetails, "Id", "Code");
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "EmpNo");
-            ViewBag.LeaveTypeId = new SelectList(db.LeaveTypes, "Id", "Code");
-            ViewBag.StatusId = new SelectList(db.SystemCodeDetails, "Id", "Code");
+            ViewBag.DurationId = new SelectList(db.SystemCodeDetails.Include(x=>x.SystemCode).Where(y=>y.SystemCode.Code =="LeaveDuration"), "Id", "Description");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "FullName");
+            ViewBag.LeaveTypeId = new SelectList(db.LeaveTypes, "Id", "Name");
+       
             return View();
         }
 
@@ -51,38 +51,51 @@ namespace EmployeeManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmployeeId,NoOfDays,StartDate,EndDate,DurationId,LeaveTypeId,Description,StatusId,CreatedById,CreatedOn,ModifieById,ModifiedOn")] LeaveApplication leaveApplication)
+        public ActionResult Create(LeaveApplication leaveApplication)
         {
-            if (ModelState.IsValid)
+            var pendingStatus = db.SystemCodeDetails
+                .Include(x => x.SystemCode)
+                .FirstOrDefault(y => y.Code == "Pending" && y.SystemCode.Code == "LeaveApplicationStatus");
+
+            if (pendingStatus != null && ModelState.IsValid)
             {
+                leaveApplication.CreatedOn = DateTime.Now;
+                leaveApplication.CreatedById = "Kirui Kevin";
+                leaveApplication.StatusId = pendingStatus.Id; // Assuming "Id" is the property holding the ID
                 db.LeaveApplications.Add(leaveApplication);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DurationId = new SelectList(db.SystemCodeDetails, "Id", "Code", leaveApplication.DurationId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "EmpNo", leaveApplication.EmployeeId);
-            ViewBag.LeaveTypeId = new SelectList(db.LeaveTypes, "Id", "Code", leaveApplication.LeaveTypeId);
-            ViewBag.StatusId = new SelectList(db.SystemCodeDetails, "Id", "Code", leaveApplication.StatusId);
+
+            ViewBag.DurationId = new SelectList(db.SystemCodeDetails.Include(x => x.SystemCode).Where(y => y.SystemCode.Code == "LeaveDuration"), "Id", "Description", leaveApplication.DurationId);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "FullName", leaveApplication.EmployeeId);
+            ViewBag.LeaveTypeId = new SelectList(db.LeaveTypes, "Id", "Name", leaveApplication.LeaveTypeId);
+           
             return View(leaveApplication);
         }
 
         // GET: LeaveApplications/Edit/5
         public ActionResult Edit(int? id)
         {
+          
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var pendingStatus = db.SystemCodeDetails
+              .Include(x => x.SystemCode)
+              .FirstOrDefault(y => y.Code == "Pending" && y.SystemCode.Code == "LeaveApplicationStatus");
             LeaveApplication leaveApplication = db.LeaveApplications.Find(id);
             if (leaveApplication == null)
             {
+                leaveApplication.StatusId = pendingStatus.Id;
                 return HttpNotFound();
             }
-            ViewBag.DurationId = new SelectList(db.SystemCodeDetails, "Id", "Code", leaveApplication.DurationId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "EmpNo", leaveApplication.EmployeeId);
-            ViewBag.LeaveTypeId = new SelectList(db.LeaveTypes, "Id", "Code", leaveApplication.LeaveTypeId);
-            ViewBag.StatusId = new SelectList(db.SystemCodeDetails, "Id", "Code", leaveApplication.StatusId);
+            ViewBag.DurationId = new SelectList(db.SystemCodeDetails.Include(x => x.SystemCode).Where(y => y.SystemCode.Code == "LeaveDuration"), "Id", "Description", leaveApplication.DurationId);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "FullName", leaveApplication.EmployeeId);
+            ViewBag.LeaveTypeId = new SelectList(db.LeaveTypes, "Id", "Name", leaveApplication.LeaveTypeId);
+           
             return View(leaveApplication);
         }
 
@@ -95,14 +108,18 @@ namespace EmployeeManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                var pendingStatus = db.SystemCodeDetails
+              .Include(x => x.SystemCode)
+              .FirstOrDefault(y => y.Code == "Pending" && y.SystemCode.Code == "LeaveApplicationStatus");
+                leaveApplication.StatusId = pendingStatus.Id;
                 db.Entry(leaveApplication).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DurationId = new SelectList(db.SystemCodeDetails, "Id", "Code", leaveApplication.DurationId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "EmpNo", leaveApplication.EmployeeId);
-            ViewBag.LeaveTypeId = new SelectList(db.LeaveTypes, "Id", "Code", leaveApplication.LeaveTypeId);
-            ViewBag.StatusId = new SelectList(db.SystemCodeDetails, "Id", "Code", leaveApplication.StatusId);
+            ViewBag.DurationId = new SelectList(db.SystemCodeDetails.Include(x => x.SystemCode).Where(y => y.SystemCode.Code == "LeaveDuration"), "Id", "Description", leaveApplication.DurationId);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "FullName", leaveApplication.EmployeeId);
+            ViewBag.LeaveTypeId = new SelectList(db.LeaveTypes, "Id", "Name", leaveApplication.LeaveTypeId);
+       
             return View(leaveApplication);
         }
 
